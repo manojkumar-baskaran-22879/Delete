@@ -27,7 +27,7 @@ jobs:
       - name: Install global packages
         run: |
           npm install -g zcatalyst-cli@latest
-          npm install
+          # npm install
      
       - name: Build Frontend Application
         env:
