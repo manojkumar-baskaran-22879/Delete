@@ -1,0 +1,80 @@
+name: Deploy to Catalyst
+ 
+on:
+  push:
+    branches: [ deploy ]
+  workflow_dispatch:
+ 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+ 
+    env:
+      CATALYST_TOKEN: ${{ secrets.CATALYST_TOKEN }}
+      CI: true
+      NEXT_PUBLIC_ZOHO_PAYMENTS_API_KEY: ${{ secrets.ZOHO_PAYMENTS_API_KEY }}
+      NEXT_PUBLIC_ZOHO_PAYMENTS_ACC_ID: ${{ secrets.ZOHO_PAYMENTS_ACC_ID }}
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+ 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+ 
+      - name: Install global packages
+        run: |
+          npm install -g zcatalyst-cli@latest
+          npm install
+     
+      - name: Build Frontend Application
+        env:
+          NEXT_PUBLIC_ZOHO_PAYMENTS_API_KEY: ${{ secrets.ZOHO_PAYMENTS_API_KEY }}
+          NEXT_PUBLIC_ZOHO_PAYMENTS_ACC_ID: ${{ secrets.ZOHO_PAYMENTS_ACC_ID }}
+        run: |
+          cd frontend
+          npm install
+          npm run build
+          cd ..
+     
+      - name: Install Backend Dependencies
+        run: |
+          cd backend
+          npm ci
+          npm install
+          cd ..
+     
+      - name: Create Build Directory Structure
+        run: |
+          mkdir -p build/frontend/out
+          mkdir -p build/backend
+     
+      - name: Copy Files to Build Directory
+        run: |
+          cp -r frontend/out/* build/frontend/out/
+          cp -r backend/* build/backend/
+          cd build/backend
+          npm install
+          cd ..
+          cd ..
+          ls
+         
+     
+      - name: Deploy to Catalyst
+        run: |
+          cat > app-config.json << EOF
+          {
+            "command": "node backend/index.js",
+            "build_path": "build",
+            "stack": "node20",
+            "env_variables": {
+              "NEXT_PUBLIC_ZOHO_PAYMENTS_API_KEY": "${{ secrets.ZOHO_PAYMENTS_API_KEY }}",
+              "NEXT_PUBLIC_ZOHO_PAYMENTS_ACC_ID": "${{ secrets.ZOHO_PAYMENTS_ACC_ID }}"
+            },
+            "memory": 256,
+            "scripts": {}
+          }
+          EOF
+          catalyst deploy --dc in --token ${{ secrets.CATALYST_TOKEN }} --org ${{ secrets.CATALYST_ORG }} --project ${{ secrets.CATALYST_PROJECT_ID }} --verbose
