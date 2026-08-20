@@ -1,0 +1,7 @@
+{
+  "earlyBird": true,
+  "prices": {
+    "earlyBird": 1,
+    "standard": 1
+  }
+}

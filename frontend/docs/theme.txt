@@ -1,0 +1,24 @@
+{
+  "project": "Codevolt 2.0",
+  "palette": {
+    "background": "#FFFFFF",
+    "surface": "#F9F9F9",
+    "brand-primary": "#FF3B1F", 
+    "brand-secondary": "#1A1A1A",
+    "grid-line": "rgba(0, 0, 0, 0.04)",
+    "text-main": "#111111",
+    "text-muted": "#666666"
+  },
+  "typography": {
+    "header": "Inter or Geist Sans (Bold, Tight Tracking)",
+    "mono": "JetBrains Mono (For Dates, Labels, and Gates)",
+    "body": "Inter (Regular, Optimized for readability)"
+  },
+  "constants": {
+    "event_name": "Codevolt 2.0",
+    "dates": "6-8 August 2026",
+    "location": "VIT, Vellore",
+    "theme_statement": "From 0s and 1s to 0 -> 1",
+    "primary_cta": "Register Now"
+  }
+}

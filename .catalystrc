@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "16332000000642001",
+      "name": "WebNotifications",
+      "domain": {
+        "id": "50045071826",
+        "name": "webnotifications-60041087212.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 1,
+          "id": "60041087212",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+	"command": "node backend/index.js",
+	"build_path": ".",
+	"stack": "node20",
+	"env_variables": {
+		"NEXT_PUBLIC_ZOHO_PAYMENTS_API_KEY": "1003.9b0d8c2cc53449757fe9101f13c46e0c.755849b29beb6ff26043f99b61e9fdc1",
+		"NEXT_PUBLIC_ZOHO_PAYMENTS_ACC_ID": "60032576427"
+	},
+	"memory": 256,
+	"scripts": {}
+}

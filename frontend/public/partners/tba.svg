@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="none"/>
+  <text x="50%" y="55%" font-family="Arial, sans-serif" font-size="120" font-weight="bold" fill="#333" text-anchor="middle">TBA</text>
+  <circle cx="200" cy="200" r="180" fill="none" stroke="#333" stroke-width="15" stroke-dasharray="20 10"/>
+</svg>
